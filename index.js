@@ -35,7 +35,8 @@ const retrieveStops = function(minx, miny, maxx, maxy) {
 	const stops = [];
 	const stopsById = {};
 	const callback = s => {
-		var stopId = s.extId;
+		var stopId = Number(s.extId);
+		if (stopId < 4400000) {
 		var stop = {};	
 		stop.stop_id = s.extId;
 		stop.stop_name = s.name
@@ -56,6 +57,7 @@ const retrieveStops = function(minx, miny, maxx, maxy) {
 			// console.log("Got new stop with extId:" + extId);
 			stopsById[stopId] = stop;
 			stops.push(stop);
+		}
 		}
 	};
 	queryStops(minx, miny, maxx, maxy, callback);
